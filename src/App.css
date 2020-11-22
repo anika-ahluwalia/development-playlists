@@ -1,17 +1,13 @@
 .App {
   text-align: center;
-  display: flex;
+  padding: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-.color-display{
-  width: 200px;
-  height: 200px;
-  margin: 30px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -42,4 +38,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.overall-title{
+  font-size: 40px;
+}
+
+.app-container{
+  display: flex;
+  padding: 30px;
+}
+
+.left-side{
+  width: 60vw;
 }
