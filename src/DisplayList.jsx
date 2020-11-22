@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import RecipeCard from './RecipeCard';
 
 export default class DisplayList extends React.Component {
 
@@ -10,8 +11,10 @@ export default class DisplayList extends React.Component {
   render(){
     return (
       <div className="display-list">
-          
-      </div>
+          <div>
+                {this.props.list.map(item => <RecipeCard recipe={item}/>)}
+            </div>
+        </div>
     );
   }
 }

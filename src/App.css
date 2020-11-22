@@ -52,3 +52,11 @@
 .left-side{
   width: 60vw;
 }
+
+.filter{
+  padding: 10px;
+}
+
+.filter-item{
+  padding-left: 15px;
+}

@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import FilteredList from './FilteredList';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class App extends React.Component {
 
@@ -8,21 +9,21 @@ export default class App extends React.Component {
     super(props);
     
     this.recipesList = [
-      { title: "Chocolate Chip Cookies", rating: 5, time: "20 min", 
+      { title: "Chocolate Chip Cookies", rating: 5, time: 20, 
         description: "the best!", img: "https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/08/chocolate-chip-cookies-1.jpg", 
-        meal: "dessert", level: "easy"},
-      { title: "Chocolate Chip Cookies", rating: 5, time: "20 min", 
+        meal: "Dessert", level: "Easy"},
+      { title: "Old Fashioned Pancakes", rating: 5, time: 30, 
         description: "the best!", img: "https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/08/chocolate-chip-cookies-1.jpg", 
-        meal: "dessert", level: "easy"},
-      { title: "Chocolate Chip Cookies", rating: 5, time: "20 min", 
+        meal: "Breakfast", level: "Easy"},
+      { title: "Dutch Baby Pancake", rating: 5, time: 120, 
         description: "the best!", img: "https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/08/chocolate-chip-cookies-1.jpg", 
-        meal: "dessert", level: "easy"},
-      { title: "Chocolate Chip Cookies", rating: 5, time: "20 min", 
+        meal: "Breakfast", level: "Hard"},
+      { title: "Wisconsin Mac and Cheese", rating: 5, time: 20, 
         description: "the best!", img: "https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/08/chocolate-chip-cookies-1.jpg", 
-        meal: "dessert", level: "easy"},
-      { title: "Chocolate Chip Cookies", rating: 5, time: "20 min", 
+        meal: "Dinner", level: "easy"},
+      { title: "Grilled Chicken Sandwich", rating: 5, time: 35, 
         description: "the best!", img: "https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/08/chocolate-chip-cookies-1.jpg", 
-        meal: "dessert", level: "easy"},
+        meal: "Lunch", level: "Medium"},
     ]
      
     // var randomColor = require('randomcolor');
