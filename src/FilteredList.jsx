@@ -12,8 +12,9 @@ export default class FilteredList extends React.Component {
         this.state = {
             level: "All",
             meal: "All",
-            time: "Select"
-        };
+            sortingOrder: "Select",
+            sorting: "Cooking Time"
+        }
     }
 
     onSelectFilterLevel = (event) => {
@@ -50,14 +51,20 @@ export default class FilteredList extends React.Component {
         }
     }
 
+    onChangeSorting = (event) => {
+        this.setState({
+            sorting: event
+        })
+    };
+
     onSelectSorting = (event) => {
         this.setState({
-            time: event
+            sortingOrder: event
         })
     };
 
     sortTime = (a, b) => {
-        if (this.state.time === "Lowest"){
+        if (this.state.sortingOrder === "Lowest to Highest"){
             if (a.time > b.time) {
                 return 1;
             }
@@ -65,11 +72,33 @@ export default class FilteredList extends React.Component {
                 return -1;
             } 
             return 0;
-        } else if (this.state.time === "Highest"){
+        } else if (this.state.sortingOrder === "Highest to Lowest"){
             if (a.time > b.time) {
                 return -1;
             }
             if (a.time < b.time) {
+                return 1;
+            } 
+            return 0;
+        } else {
+            return 0;
+        }
+    }
+
+    sortRating = (a, b) => {
+        if (this.state.sortingOrder === "Lowest to Highest"){
+            if (a.rating > b.rating) {
+                return 1;
+            }
+            if (a.rating < b.rating) {
+                return -1;
+            } 
+            return 0;
+        } else if (this.state.sortingOrder === "Highest to Lowest"){
+            if (a.rating > b.rating) {
+                return -1;
+            }
+            if (a.rating < b.rating) {
                 return 1;
             } 
             return 0;
@@ -95,22 +124,34 @@ export default class FilteredList extends React.Component {
                 <Nav.Item className="filter-item"><Nav.Link eventKey="Breakfast" onSelect={this.onSelectFilterMeal}>Breakfast</Nav.Link></Nav.Item>
                 <Nav.Item className="filter-item"><Nav.Link eventKey="Lunch" onSelect={this.onSelectFilterMeal}>Lunch</Nav.Link></Nav.Item>
                 <Nav.Item className="filter-item"><Nav.Link eventKey="Dinner" onSelect={this.onSelectFilterMeal}>Dinner</Nav.Link></Nav.Item>
+                <Nav.Item className="filter-item"><Nav.Link eventKey="Dessert" onSelect={this.onSelectFilterMeal}>Dessert</Nav.Link></Nav.Item>
             </Navbar>
 
             <div style={{display: "flex"}}>
-                <div>Sort by Cooking Time: </div>
+                <div>Sort by </div>
                 <Dropdown>
                     <Dropdown.Toggle id="dropdown-primary">
-                        {this.state.time}
+                        {this.state.sorting}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item eventKey="All" onSelect={this.onSelectSorting}>Select</Dropdown.Item>
-                        <Dropdown.Item eventKey="Lowest" onSelect={this.onSelectSorting}>Lowest to Highest</Dropdown.Item>
-                        <Dropdown.Item eventKey="Highest" onSelect={this.onSelectSorting}>Highest to Lowest</Dropdown.Item>
+                        <Dropdown.Item eventKey="Cooking Time" onSelect={this.onChangeSorting}>Cooking Time</Dropdown.Item>
+                        <Dropdown.Item eventKey="Rating" onSelect={this.onChangeSorting}>Rating</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+
+                <Dropdown>
+                    <Dropdown.Toggle id="dropdown-primary">
+                        {this.state.sortingOrder}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item eventKey="Select" onSelect={this.onSelectSorting}>Select</Dropdown.Item>
+                        <Dropdown.Item eventKey="Lowest to Highest" onSelect={this.onSelectSorting}>Lowest to Highest</Dropdown.Item>
+                        <Dropdown.Item eventKey="Highest to Lowest" onSelect={this.onSelectSorting}>Highest to Lowest</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
-            <DisplayList list={this.props.list.filter(item => this.matchesFilterMeal(item) && this.matchesFilterLevel(item) ? true : false).sort(this.sortTime)} 
+            <DisplayList list={this.props.list.filter(item => this.matchesFilterMeal(item) && 
+                this.matchesFilterLevel(item) ? true : false).sort((a, b) => this.state.sorting == "Cooking Time" ? this.sortTime(a,b) : this.sortRating(a,b))} 
                 addToCookbook={this.props.addToCookbook}/>
         </div>
         );

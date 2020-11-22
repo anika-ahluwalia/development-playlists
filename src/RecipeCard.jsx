@@ -23,6 +23,7 @@ export default class RecipeCard extends React.Component {
             {/* <img src="https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/08/chocolate-chip-cookies-1.jpg"/> */}
             <div>{this.props.recipe.title}</div>
             <div>{this.props.recipe.time}</div>
+            <div>{this.props.recipe.rating}</div>
             <Button variant="secondary" onClick={this.addToCookbook}>Add to Cookbook</Button>
         </div>
       );
