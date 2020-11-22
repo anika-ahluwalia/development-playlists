@@ -110,7 +110,8 @@ export default class FilteredList extends React.Component {
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
-            <DisplayList list={this.props.list.filter(item => this.matchesFilterMeal(item) && this.matchesFilterLevel(item) ? true : false).sort(this.sortTime)} />
+            <DisplayList list={this.props.list.filter(item => this.matchesFilterMeal(item) && this.matchesFilterLevel(item) ? true : false).sort(this.sortTime)} 
+                addToCookbook={this.props.addToCookbook}/>
         </div>
         );
     }

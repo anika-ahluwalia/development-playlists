@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import FilteredList from './FilteredList';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Cookbook from './Cookbook';
 
 export default class App extends React.Component {
 
@@ -26,10 +27,11 @@ export default class App extends React.Component {
         meal: "Lunch", level: "Medium"},
     ]
      
-    // var randomColor = require('randomcolor');
-    // this.state = {
-    //   colors: [randomColor(), randomColor(), randomColor(), randomColor(), randomColor()],
-    // };
+    this.state = {
+      cookbook: [],
+    };
+
+    this.totalTime = 0;
   }
 
   // refreshColor = (color) => {
@@ -44,6 +46,25 @@ export default class App extends React.Component {
   //   this.setState({ colors });
   // }
 
+  addToCookbook = (recipe) => {
+    var cookbook = this.state.cookbook;
+    if (!cookbook.includes(recipe)){
+      cookbook.push(recipe);
+    }
+    this.totalTime += recipe.time;
+    this.setState({ cookbook });
+  }
+
+  removeFromCookbook = (recipe) => {
+    var cookbook = this.state.cookbook;
+    if (cookbook.includes(recipe)) {
+      const index = cookbook.indexOf(recipe);
+      cookbook.splice(index, index + 1);
+    }
+    this.totalTime -= recipe.time;
+    this.setState({ cookbook });
+  }
+
 
   render(){
     return (
@@ -52,10 +73,10 @@ export default class App extends React.Component {
         <div className="app-container">
           <div className="left-side">
             <div> Filtering Options </div>
-            <FilteredList list={this.recipesList} />
+            <FilteredList list={this.recipesList} addToCookbook={this.addToCookbook} />
           </div>
           <div className="right-side">
-            <div>aggregator</div>
+            <Cookbook list={this.state.cookbook} removeFromCookbook={this.removeFromCookbook} totalTime={this.totalTime}/>
           </div>
         </div>
 

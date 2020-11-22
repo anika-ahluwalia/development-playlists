@@ -12,7 +12,7 @@ export default class DisplayList extends React.Component {
     return (
       <div className="display-list">
           <div>
-                {this.props.list.map(item => <RecipeCard recipe={item}/>)}
+                {this.props.list.map(item => <RecipeCard recipe={item} addToCookbook={this.props.addToCookbook}/>)}
             </div>
         </div>
     );
