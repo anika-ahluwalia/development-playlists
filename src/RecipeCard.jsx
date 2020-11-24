@@ -1,6 +1,9 @@
 import './App.css';
 import React from 'react';
 import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+import Icon from '@material-ui/core/Icon';
+import Chip from '@material-ui/core/Chip';
 
 export default class RecipeCard extends React.Component {
 
@@ -13,19 +16,31 @@ export default class RecipeCard extends React.Component {
     }
   
     render(){
+
+      var items = []; 
+      var index = 0;
+
+      while (index < this.props.recipe.rating) {
+        index += 1;
+        items.push(<Icon style={{color: "#b4dab1"}}>star</Icon>)
+      }
+
       return (
-        <div className="recipe-card">
-            {/* <div>Recipe Title</div>
-            <div>Recipe Rating</div>
-            <div>Recipe Time and Level </div>
-            <div>Recipe Description</div>
-            <div>Recipe Photo</div> */}
-            {/* <img src="https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/08/chocolate-chip-cookies-1.jpg"/> */}
-            <div>{this.props.recipe.title}</div>
-            <div>{this.props.recipe.time}</div>
-            <div>{this.props.recipe.rating}</div>
-            <Button variant="secondary" onClick={this.addToCookbook}>Add to Cookbook</Button>
-        </div>
+        <Col className="recipe-card" xs={6} md={4} lg={3}>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+            <div className="recipe-title">{this.props.recipe.title}</div>
+            <div className="recipe-props" style={{display:"flex"}}>
+              <Chip className="recipe-time" label={this.props.recipe.time + " minutes"} />
+              {items}
+            </div>
+            <div className="recipe-img"><img src={this.props.recipe.img} alt={this.props.recipe.title}/></div>
+            <div className="recipe-props" style={{display:"flex", justifyContent: "center"}}>
+              <Chip className="recipe-time" label={this.props.recipe.level} />
+              <Chip className="recipe-time" label={this.props.recipe.meal} />
+            </div>
+            <div className="add-to-book"><Button variant="secondary" style={{backgroundColor: "#b4dab1", borderColor: "#b4dab1", color: "black"}}
+              onClick={this.addToCookbook}>Add to Cookbook</Button></div>
+        </Col>
       );
     }
   }

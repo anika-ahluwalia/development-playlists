@@ -3,7 +3,11 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import DisplayList from './DisplayList';
-import Dropdown from 'react-bootstrap/Dropdown';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
 
 export default class FilteredList extends React.Component {
 
@@ -17,9 +21,9 @@ export default class FilteredList extends React.Component {
         }
     }
 
-    onSelectFilterLevel = (event) => {
+    onSelectFilterLevel = (level) => {
         this.setState({
-            level: event
+            level: level
         })
     };
 
@@ -53,13 +57,13 @@ export default class FilteredList extends React.Component {
 
     onChangeSorting = (event) => {
         this.setState({
-            sorting: event
+            sorting: event.target.value
         })
     };
 
     onSelectSorting = (event) => {
         this.setState({
-            sortingOrder: event
+            sortingOrder: event.target.value
         })
     };
 
@@ -110,45 +114,61 @@ export default class FilteredList extends React.Component {
     render() {
         return (
         <div className="filtered-list">
-            <Navbar className="fitler" style={{display: "flex"}} bg="dark" variant="dark">
-                <Navbar.Brand>Level: </Navbar.Brand>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="All" onSelect={this.onSelectFilterLevel}>All</Nav.Link></Nav.Item>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="Easy" onSelect={this.onSelectFilterLevel}>Easy</Nav.Link></Nav.Item>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="Medium" onSelect={this.onSelectFilterLevel}>Medium</Nav.Link></Nav.Item>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="Hard" onSelect={this.onSelectFilterLevel}>Hard</Nav.Link></Nav.Item>
-            </Navbar>
+            <div className="filters">
+                <div className="filter-section" style={{display: "flex"}}>
+                    <div className="section-title">Level: </div>
+                    <ButtonGroup disableElevation aria-label="outlined secondary button group">
+                        <Button style={{backgroundColor: this.state.level == "All" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterLevel("All")}>All</Button>
+                        <Button style={{backgroundColor: this.state.level == "Easy" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterLevel("Easy")}>Easy</Button>
+                        <Button style={{backgroundColor: this.state.level == "Medium" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterLevel("Medium")}>Medium</Button>
+                        <Button style={{backgroundColor: this.state.level == "Hard" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterLevel("Hard")}>Hard</Button>
+                    </ButtonGroup>
+                </div>
 
-            <Navbar className="fitler" style={{display: "flex"}} bg="dark" variant="dark">
-                <Navbar.Brand>Meal: </Navbar.Brand>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="All" onSelect={this.onSelectFilterMeal}>All</Nav.Link></Nav.Item>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="Breakfast" onSelect={this.onSelectFilterMeal}>Breakfast</Nav.Link></Nav.Item>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="Lunch" onSelect={this.onSelectFilterMeal}>Lunch</Nav.Link></Nav.Item>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="Dinner" onSelect={this.onSelectFilterMeal}>Dinner</Nav.Link></Nav.Item>
-                <Nav.Item className="filter-item"><Nav.Link eventKey="Dessert" onSelect={this.onSelectFilterMeal}>Dessert</Nav.Link></Nav.Item>
-            </Navbar>
+                <div className="filter-section" style={{display: "flex"}}>
+                    <div className="section-title" >Meal: </div>
+                    <ButtonGroup disableElevation aria-label="outlined secondary button group">
+                        <Button style={{backgroundColor: this.state.meal == "All" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMeal("All")}>All</Button>
+                        <Button style={{backgroundColor: this.state.meal == "Breakfast" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMeal("Breakfast")}>Breakfast</Button>
+                        <Button style={{backgroundColor: this.state.meal == "Lunch" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMeal("Lunch")}>Lunch</Button>
+                        <Button style={{backgroundColor: this.state.meal == "Dinner" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMeal("Dinner")}>Dinner</Button>
+                        <Button style={{backgroundColor: this.state.meal == "Dessert" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMeal("Dessert")}>Dessert</Button>
+                    </ButtonGroup>
+                </div>
 
-            <div style={{display: "flex"}}>
-                <div>Sort by </div>
-                <Dropdown>
-                    <Dropdown.Toggle id="dropdown-primary">
-                        {this.state.sorting}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item eventKey="Cooking Time" onSelect={this.onChangeSorting}>Cooking Time</Dropdown.Item>
-                        <Dropdown.Item eventKey="Rating" onSelect={this.onChangeSorting}>Rating</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
-
-                <Dropdown>
-                    <Dropdown.Toggle id="dropdown-primary">
-                        {this.state.sortingOrder}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item eventKey="Select" onSelect={this.onSelectSorting}>Select</Dropdown.Item>
-                        <Dropdown.Item eventKey="Lowest to Highest" onSelect={this.onSelectSorting}>Lowest to Highest</Dropdown.Item>
-                        <Dropdown.Item eventKey="Highest to Lowest" onSelect={this.onSelectSorting}>Highest to Lowest</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+                <div className="filter-section" style={{display: "flex"}}>
+                    <div className="section-title">Sort by: </div>
+                    <div className="section-title">
+                        <FormControl>
+                            <Select
+                                value={this.state.sorting}
+                                onChange={this.onChangeSorting}>
+                            <MenuItem value={"Cooking Time"}>Cooking Time</MenuItem>
+                            <MenuItem value={"Rating"}>Rating</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <div className="section-title">
+                        <FormControl>
+                            <Select
+                                value={this.state.sortingOrder}
+                                onChange={this.onSelectSorting}>
+                            <MenuItem value={"Select"}>Select</MenuItem>
+                            <MenuItem value={"Lowest to Highest"}>Lowest to Highest</MenuItem>
+                            <MenuItem value={"Highest to Lowest"}>Highest to Lowest</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                </div>
             </div>
             <DisplayList list={this.props.list.filter(item => this.matchesFilterMeal(item) && 
                 this.matchesFilterLevel(item) ? true : false).sort((a, b) => this.state.sorting == "Cooking Time" ? this.sortTime(a,b) : this.sortRating(a,b))} 
