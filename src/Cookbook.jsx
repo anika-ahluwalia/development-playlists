@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import CookbookCard from './CookbookCard';
+import Row from 'react-bootstrap/Row'
 
 export default class Cookbook extends React.Component {
 
@@ -11,9 +12,9 @@ export default class Cookbook extends React.Component {
   render(){
     return (
         <div className="cookbook">
-            <div>Cookbook</div>
-            <div>{this.props.list.map(item => <CookbookCard recipe={item} removeFromCookbook={this.props.removeFromCookbook}/>)}</div>
-            <div>Total Time = {this.props.totalTime}</div>
+            <div className="recipe-title" style={{fontSize: "25px"}}>Cookbook</div>
+            <Row style={{justifyContent:"center"}}>{this.props.list.map(item => <CookbookCard recipe={item} removeFromCookbook={this.props.removeFromCookbook}/>)}</Row>
+            <div className="total-time">Total Time: {this.props.totalTime} minutes</div>
         </div>
     );
   }

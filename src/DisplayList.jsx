@@ -12,7 +12,7 @@ export default class DisplayList extends React.Component {
   render(){
     return (
       <div className="display-list">
-          <Row>
+          <Row style={{justifyContent:"center"}}>
               {this.props.list.map(item => <RecipeCard recipe={item} addToCookbook={this.props.addToCookbook}/>)}
             </Row>
         </div>

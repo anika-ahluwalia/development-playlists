@@ -22,14 +22,14 @@ export default class RecipeCard extends React.Component {
 
       while (index < this.props.recipe.rating) {
         index += 1;
-        items.push(<Icon style={{color: "#b4dab1"}}>star</Icon>)
+        items.push(<Icon style={{color: "#b4dab1", fontSize: "22px"}}>star</Icon>)
       }
 
       return (
-        <Col className="recipe-card" xs={6} md={4} lg={3}>
+        <div className="recipe-card">
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             <div className="recipe-title">{this.props.recipe.title}</div>
-            <div className="recipe-props" style={{display:"flex"}}>
+            <div className="recipe-props" style={{display:"flex", justifyContent: "center", alignItems: "center"}}>
               <Chip className="recipe-time" label={this.props.recipe.time + " minutes"} />
               {items}
             </div>
@@ -38,9 +38,9 @@ export default class RecipeCard extends React.Component {
               <Chip className="recipe-time" label={this.props.recipe.level} />
               <Chip className="recipe-time" label={this.props.recipe.meal} />
             </div>
-            <div className="add-to-book"><Button variant="secondary" style={{backgroundColor: "#b4dab1", borderColor: "#b4dab1", color: "black"}}
+            <div className="add-to-book" style={{paddingBottom: "8px"}}><Button variant="secondary" style={{backgroundColor: "#b4dab1", borderColor: "#b4dab1", color: "black"}}
               onClick={this.addToCookbook}>Add to Cookbook</Button></div>
-        </Col>
+        </div>
       );
     }
   }
