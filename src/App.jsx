@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import FilteredList from './FilteredList';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Cookbook from './Cookbook';
+import Playlist from './Playlist';
 
 export default class App extends React.Component {
 
@@ -10,89 +10,131 @@ export default class App extends React.Component {
     super(props);
      
     this.state = {
-      cookbook: [],
-      recipesList: [
-        { title: "Chocolate Chip Cookies", rating: 5, time: 30, 
-          img: "https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/08/chocolate-chip-cookies-1.jpg", 
-          meal: "Dessert", level: "Easy", number: 0},
-        { title: "Macaroni and Cheese", rating: 3, time: 15, 
-          img: "https://pinchofyum.com/wp-content/uploads/Instant-Pot-Mac-and-Cheese-Square.jpg", 
-          meal: "Lunch", level: "Easy", number: 0},
-        { title: "Lemon Salmon", rating: 4, time: 30, 
-          img: "https://www.tastesoflizzyt.com/wp-content/uploads/2019/08/lemon-garlic-butter-salmon-recipe-8.jpg", 
-          meal: "Dinner", level: "Medium", number: 0},
-        { title: "Avocado Toast", rating: 5, time: 10, 
-          img: "https://gimmedelicious.com/wp-content/uploads/2016/07/avocado-toast-7-of-13-500x500.jpg", 
-          meal: "Breakfast", level: "Easy", number: 0},
-        { title: "Cinnamon Buns", rating: 4, time: 100, 
-          img: "https://tmbidigitalassetsazure.blob.core.windows.net/rms3-prod/attachments/37/1200x1200/Skillet-Bacon-Cinnamon-Buns_EXPS_CIMZW19_212428_B09_12_9b.jpg", 
-          meal: "Dessert", level: "Hard", number: 0},
-        { title: "Spaghetti and Meatballs", rating: 2, time: 50, 
-          img: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/Spaghetti-meatballs-with-hidden-veg-sauce-67ccf78-scaled.jpg?quality=45&resize=504,458?quality=90&webp=true&resize=504,459", 
-          meal: "Dinner", level: "Medium", number: 0},
-        { title: "Dutch Baby", rating: 5, time: 120, 
-          img: "https://rasamalaysia.com/wp-content/uploads/2018/04/dutch-baby-pancake-thumb.jpg", 
-          meal: "Breakfast", level: "Hard", number: 0},
-        { title: "French Macarons", rating: 4, time: 90, 
-          img: "https://t8x8a5p2.stackpathcdn.com/wp-content/uploads/2016/03/How-to-Make-French-Macarons-Recipe-Image-720x720.jpg", 
-          meal: "Dessert", level: "Hard", number: 0},
-        { title: "Grilled Cheese", rating: 5, time: 10, 
-          img: "https://cdn.vox-cdn.com/thumbor/toOyo6o1wmiaSe_dg5qe91aQZYk=/0x0:5266x3511/1200x900/filters:focal(2212x1335:3054x2177)/cdn.vox-cdn.com/uploads/chorus_image/image/62361334/shutterstock_645742051.12.jpg", 
-          meal: "Lunch", level: "Easy", number: 0},
-        { title: "Pot Roast", rating: 1, time: 60, 
-          img: "https://thestayathomechef.com/wp-content/uploads/2019/01/Braised-Pot-Roast-1-500x500.jpg", 
-          meal: "Dinner", level: "Medium", number: 0},
-        { title: "Sesame Chicken", rating: 3, time: 60, 
-          img: "https://www.daringgourmet.com/wp-content/uploads/2014/08/Sesame-Chicken-5-square-scaled.jpg", 
-          meal: "Lunch", level: "Medium", number: 0},
+      playlist: [],
+      songsList: [
+        { title: "Green Light", artist: "Lorde", rating: 5, time: 3.54, 
+          img: "https://images.genius.com/135e9ae4d19e7816e0ffdd9a95922a0c.1000x1000x1.jpg",
+          genre: "Indie", mood: "Energetic"},
+        { title: "Sofia", artist: "Clairo", rating: 5, time: 3.08, 
+          img: "https://images.genius.com/08dcb11c5d99d150b17b92a5e0f1f8b4.1000x1000x1.png",
+          genre: "Indie", mood: "Happy"},
+        { title: "POWER", artist: "Kanye West", rating: 4, time: 4.52, 
+          img: "https://m.media-amazon.com/images/I/715Ag05hzQL._SS500_.jpg",
+          genre: "Hip Hop", mood: "Energetic"},
+        { title: "Pon de Replay", artist: "Rihanna", rating: 3, time: 4.06, 
+          img: "https://i.pinimg.com/originals/99/59/21/9959212d85557bb497e322c66aec4b66.jpg",
+          genre: "Pop", mood: "Energetic"},
+        { title: "Jocelyn Flores", artist: "XXXTENTACTION", rating: 2, time: 1.59, 
+          img: "https://i.pinimg.com/originals/c7/7e/60/c77e6003b548018f2bfc325efb54fa59.jpg",
+          genre: "Hip Hop", mood: "Sad"},
+        { title: "3 Nights", artist: "Dominic Fike", rating: 4, time: 2.57, 
+          img: "https://m.media-amazon.com/images/I/71O5qaGo4zL._SS500_.jpg",
+          genre: "Indie", mood: "Energetic"},
+        { title: "Video Games", artist: "Lana Del Ray", rating: 3, time: 4.42, 
+          img: "https://images.genius.com/25268f673e6364f69748e5f7bcc5aaa5.1000x1000x1.png",
+          genre: "Indie", mood: "Sad"},
+        { title: "8TEEN", artist: "Khalid", rating: 3, time: 3.48, 
+          img: "https://upload.wikimedia.org/wikipedia/en/7/7d/Khalid_-_American_Teen.png",
+          genre: "Hip Hop", mood: "Happy"},
+        { title: "Vampire", artist: "Dominic Fike", rating: 5, time: 3.06, 
+          img: "https://upload.wikimedia.org/wikipedia/en/4/4d/Dominic_fike_what_could_possibly_go_wrong.jpg",
+          genre: "Indie", mood: "Happy"},
+        { title: "Someone Like You", artist: "Adele", rating: 4, time: 4.45, 
+          img: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Adele_-_21.png/220px-Adele_-_21.png",
+          genre: "Pop", mood: "Sad"},
+        { title: "R.I.P. 2 My Youth", artist: "The Neighboorhood", rating: 5, time: 3.25, 
+          img: "https://i.pinimg.com/originals/94/92/74/9492744da88ce7891d6ac912d0ea2fe4.jpg",
+          genre: "Indie", mood: "Sad"},
+        { title: "Saturday Sun", artist: "Vance Joy", rating: 3, time: 3.34, 
+          img: "https://images-na.ssl-images-amazon.com/images/I/71yw%2BI5ObZL._SL1500_.jpg",
+          genre: "Pop", mood: "Happy"},
+        { title: "Knee Socks", artist: "Arctic Monkeys", rating: 4, time: 4.17, 
+          img: "https://upload.wikimedia.org/wikipedia/en/0/04/Arctic_Monkeys_-_AM.png",
+          genre: "Indie", mood: "Happy"},
+        { title: "Pocketful of Sunshine", artist: "Natasha Bedingfield", rating: 4, time: 3.22, 
+          img: "https://images-na.ssl-images-amazon.com/images/I/81-EGIxi8%2BL._SL1500_.jpg",
+          genre: "Pop", mood: "Happy"},
+        { title: "Broccoli", artist: "Lil Yachty", rating: 4, time: 3.45, 
+          img: "https://upload.wikimedia.org/wikipedia/en/c/c4/BroccoliDRAM.jpg",
+          genre: "Hip Hop", mood: "Happy"},
+        { title: "Alleyways", artist: "The Neighboorhood", rating: 2, time: 4.27, 
+          img: "https://upload.wikimedia.org/wikipedia/en/2/2f/Iloveyou_the_neighbourhood.jpeg",
+          genre: "Indie", mood: "Sad"},
+        { title: "Sunflower, Vol. 6", artist: "Harry Styles", rating: 4, time: 3.14, 
+          img: "https://static.wikia.nocookie.net/harry-styles8955/images/a/af/Fine_Line_Cover_Art.jpeg/revision/latest/scale-to-width-down/340?cb=20191104185139",
+          genre: "Pop", mood: "Happy"},
+        { title: "BOY BYE", artist: "BROCKHAMPTON", rating: 4, time: 2.22, 
+          img: "https://thefader-res.cloudinary.com/private_images/w_760,c_limit,f_auto,q_auto:best/brkcohamp_gigner_ovdlb9/brockhampton-new-song-boy-bye-detail-ginger-2019.jpg",
+          genre: "Hip Hop", mood: "Energetic"},
+        { title: "Moon & Stars", artist: "$NOT", rating: 3, time: 3.07, 
+          img: "https://m.media-amazon.com/images/I/81Uny2pvwTL._SS500_.jpg",
+          genre: "Hip Hop", mood: "Happy"},
+        { title: "Saturn", artist: "RIZ LA VIE", rating: 5, time: 3.27, 
+          img: "https://i.pinimg.com/736x/1a/94/3b/1a943b84847b0dff1735c309962b625a.jpg",
+          genre: "Hip Hop", mood: "Happy"},
+        { title: "Va Va Voom", artist: "Nicki Minaj", rating: 4, time: 3.03, 
+          img: "https://static.wikia.nocookie.net/nickiminaj/images/1/11/Nicki_Minaj_-_Pink_Friday_Roman_Reloaded_%28Deluxe_Edition%29_-2012-.png/revision/latest?cb=20160807014104",
+          genre: "Pop", mood: "Energetic"},
+        { title: "Lucid Dreams", artist: "Juice WRLD", rating: 1, time: 4.00, 
+          img: "https://e-cdns-images.dzcdn.net/images/cover/f8c4db1b0f346d6e4b1558f734ad4523/500x500.jpg",
+          genre: "Hip Hop", mood: "Sad"},
+        { title: "Knock Knock", artist: "Mac Miller", rating: 4, time: 3.22, 
+          img: "https://m.media-amazon.com/images/I/81puBBNXi1L._SS500_.jpg",
+          genre: "Hip Hop", mood: "Energetic"},
+        { title: "lovely", artist: "Billie Eilish, Khalid", rating: 2, time: 3.20, 
+          img: "https://upload.wikimedia.org/wikipedia/en/6/62/Billie_Eilish_%26_Khalid_-_Lovely.png",
+          genre: "Pop", mood: "Sad"},
+        { title: "Dog Days Are Over", artist: "Florence + The Machine", rating: 4, time: 4.11, 
+          img: "https://images-na.ssl-images-amazon.com/images/I/61Khx8MZhvL._SY355_.jpg",
+          genre: "Pop", mood: "Happy"},
+        { title: "Potential Breakup Song", artist: "Aly & AJ", rating: 4, time: 3.39, 
+          img: "https://m.media-amazon.com/images/I/71c-L3ZWaEL._SS500_.jpg",
+          genre: "Pop", mood: "Energetic"},
+        { title: "July", artist: "Noah Cyrus", rating: 3, time: 2.36, 
+          img: "https://92zew.net/wp-content/uploads/2020/04/unnamed-180x180.jpg",
+          genre: "Pop", mood: "Sad"},
+        { title: "Hit Me Up", artist: "Omar Apollo", rating: 5, time: 2.40, 
+          img: "https://m.media-amazon.com/images/I/91xa9ieQbpL._SS500_.jpg",
+          genre: "Indie", mood: "Energetic"},
+        { title: "Getaway", artist: "Saint Motel", rating: 4, time: 3.01, 
+          img: "https://upload.wikimedia.org/wikipedia/en/thumb/4/46/Saintmotelevision_cover.jpg/220px-Saintmotelevision_cover.jpg",
+          genre: "Pop", mood: "Happy"},
+        { title: "idfc", artist: "blackbear", rating: 2, time: 4.05, 
+          img: "https://i.pinimg.com/originals/a6/9a/ac/a69aac5ce170736ba51b412a0cca1846.jpg",
+          genre: "Hip Hop", mood: "Sad"},
       ]
     };
-
     this.totalTime = 0;
   }
 
-  addToCookbook = (recipe) => {
-    var cookbook = this.state.cookbook;
-    if (!cookbook.includes(recipe)){
-      recipe.number = 1;
-      cookbook.push(recipe);
-      this.totalTime += recipe.time;
-    } else {
-      recipe.number += 1;
-      this.totalTime += recipe.time;
+  addToPlaylist = (song) => {
+    var playlist = this.state.playlist;
+    if (!playlist.includes(song)){
+      playlist.push(song);
+      this.totalTime += song.time;
     }
-    this.setState({ cookbook });
+    this.setState({ playlist });
   }
 
-  // changeNumber = (recipe, number) => {
-  //   var cookbook = this.state.cookbook;
-  //   if (cookbook.includes(recipe)) {
-  //     recipe.number = number;
-  //     this.totalTime -= recipe.time * recipe.number;
-  //     this.totalTime += recipe.time * number;
-  //   }
-  //   this.setState({ cookbook });
-  // }
-
-  removeFromCookbook = (recipe) => {
-    var cookbook = this.state.cookbook;
-    const index = cookbook.indexOf(recipe);
-    cookbook.splice(index, index + 1);
-    this.totalTime -= recipe.time * recipe.number;
-    this.setState({ cookbook });
+  removeFromPlaylist = (song) => {
+    var playlist = this.state.playlist;
+    const index = playlist.indexOf(song);
+    playlist.splice(index, index + 1);
+    this.totalTime -= song.time;
+    this.setState({ playlist });
   }
 
 
   render(){
     return (
       <div className="App">
-        <div className="overall-title">Recipe Book</div>
+        <div className="overall-title">Create a Playlist!</div>
         <div className="app-container">
           <div className="left-side">
-            <FilteredList list={this.state.recipesList} addToCookbook={this.addToCookbook} />
+            <FilteredList list={this.state.songsList} addToPlaylist={this.addToPlaylist} />
           </div>
           <div className="right-side">
-            <Cookbook list={this.state.cookbook} removeFromCookbook={this.removeFromCookbook} totalTime={this.totalTime}/>
+            <Playlist list={this.state.playlist} removeFromPlaylist={this.removeFromPlaylist} totalTime={this.totalTime}/>
           </div>
         </div>
       </div>

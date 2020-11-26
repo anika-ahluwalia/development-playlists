@@ -14,41 +14,41 @@ export default class FilteredList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            level: "All",
-            meal: "All",
+            genre: "All",
+            mood: "All",
             sortingOrder: "Select",
-            sorting: "Cooking Time"
+            sorting: "Time"
         }
     }
 
-    onSelectFilterLevel = (level) => {
+    onSelectFilterGenre = (genre) => {
         this.setState({
-            level: level
+            genre: genre
         })
     };
 
-    matchesFilterLevel = (item) => {
+    matchesFilterGenre = (item) => {
         // all items should be shown when no filter is selected
-        if(this.state.level === "All") { 
+        if(this.state.genre === "All") { 
             return true
-        } else if (this.state.level === item.level) {
+        } else if (this.state.genre === item.genre) {
             return true
         } else {
             return false
         }
     }
 
-    onSelectFilterMeal = (event) => {
+    onSelectFilterMood = (event) => {
         this.setState({
-            meal: event
+            mood: event
         })
     };
 
-    matchesFilterMeal = (item) => {
+    matchesFilterMood = (item) => {
         // all items should be shown when no filter is selected
-        if(this.state.meal === "All") { 
+        if(this.state.mood === "All") { 
             return true
-        } else if (this.state.meal === item.meal) {
+        } else if (this.state.mood === item.mood) {
             return true
         } else {
             return false
@@ -116,32 +116,30 @@ export default class FilteredList extends React.Component {
         <div className="filtered-list">
             <div className="filters">
                 <div className="filter-section" style={{display: "flex"}}>
-                    <div className="section-title">Level: </div>
+                    <div className="section-title">Genre: </div>
                     <ButtonGroup disableElevation aria-label="outlined secondary button group">
-                        <Button style={{backgroundColor: this.state.level == "All" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterLevel("All")}>All</Button>
-                        <Button style={{backgroundColor: this.state.level == "Easy" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterLevel("Easy")}>Easy</Button>
-                        <Button style={{backgroundColor: this.state.level == "Medium" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterLevel("Medium")}>Medium</Button>
-                        <Button style={{backgroundColor: this.state.level == "Hard" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterLevel("Hard")}>Hard</Button>
+                        <Button style={{backgroundColor: this.state.genre == "All" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterGenre("All")}>All</Button>
+                        <Button style={{backgroundColor: this.state.genre == "Indie" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterGenre("Indie")}>Indie</Button>
+                        <Button style={{backgroundColor: this.state.genre == "Pop" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterGenre("Pop")}>Pop</Button>
+                        <Button style={{backgroundColor: this.state.genre == "Hip Hop" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterGenre("Hip Hop")}>Hip Hop</Button>
                     </ButtonGroup>
                 </div>
 
                 <div className="filter-section" style={{display: "flex"}}>
-                    <div className="section-title" >Meal: </div>
+                    <div className="section-title" >Mood: </div>
                     <ButtonGroup disableElevation aria-label="outlined secondary button group">
-                        <Button style={{backgroundColor: this.state.meal == "All" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterMeal("All")}>All</Button>
-                        <Button style={{backgroundColor: this.state.meal == "Breakfast" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterMeal("Breakfast")}>Breakfast</Button>
-                        <Button style={{backgroundColor: this.state.meal == "Lunch" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterMeal("Lunch")}>Lunch</Button>
-                        <Button style={{backgroundColor: this.state.meal == "Dinner" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterMeal("Dinner")}>Dinner</Button>
-                        <Button style={{backgroundColor: this.state.meal == "Dessert" ? "#b4dab1" : ""}} 
-                            onClick={() => this.onSelectFilterMeal("Dessert")}>Dessert</Button>
+                        <Button style={{backgroundColor: this.state.mood == "All" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMood("All")}>All</Button>
+                        <Button style={{backgroundColor: this.state.mood == "Happy" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMood("Happy")}>Happy</Button>
+                        <Button style={{backgroundColor: this.state.mood == "Sad" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMood("Sad")}>Sad</Button>
+                        <Button style={{backgroundColor: this.state.mood == "Energetic" ? "#b4dab1" : ""}} 
+                            onClick={() => this.onSelectFilterMood("Energetic")}>Energetic</Button>
                     </ButtonGroup>
                 </div>
 
@@ -152,7 +150,7 @@ export default class FilteredList extends React.Component {
                             <Select
                                 value={this.state.sorting}
                                 onChange={this.onChangeSorting}>
-                            <MenuItem value={"Cooking Time"}>Cooking Time</MenuItem>
+                            <MenuItem value={"Time"}>Time</MenuItem>
                             <MenuItem value={"Rating"}>Rating</MenuItem>
                             </Select>
                         </FormControl>
@@ -170,9 +168,9 @@ export default class FilteredList extends React.Component {
                     </div>
                 </div>
             </div>
-            <DisplayList list={this.props.list.filter(item => this.matchesFilterMeal(item) && 
-                this.matchesFilterLevel(item) ? true : false).sort((a, b) => this.state.sorting == "Cooking Time" ? this.sortTime(a,b) : this.sortRating(a,b))} 
-                addToCookbook={this.props.addToCookbook}/>
+            <DisplayList list={this.props.list.filter(item => this.matchesFilterMood(item) && 
+                this.matchesFilterGenre(item) ? true : false).sort((a, b) => this.state.sorting == "Time" ? this.sortTime(a,b) : this.sortRating(a,b))} 
+                addToPlaylist={this.props.addToPlaylist}/>
         </div>
         );
     }

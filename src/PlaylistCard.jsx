@@ -5,18 +5,18 @@ import Icon from '@material-ui/core/Icon';
 import Chip from '@material-ui/core/Chip';
 import TextField from '@material-ui/core/TextField';
 
-export default class CookbookCard extends React.Component {
+export default class PlaylistCard extends React.Component {
 
     constructor(props){
       super(props);
 
       this.state = {
-        number: String(this.props.recipe.number)
+        number: String(this.props.song.number)
       };
     }
     
-    removeFromCookbook = () => {
-      this.props.removeFromCookbook(this.props.recipe);
+    removeFromPlaylist = () => {
+      this.props.removeFromPlaylist(this.props.song);
     }
 
     isNumber = (str) => {
@@ -41,23 +41,24 @@ export default class CookbookCard extends React.Component {
       var items = []; 
       var index = 0;
 
-      while (index < this.props.recipe.rating) {
+      while (index < this.props.song.rating) {
         index += 1;
         items.push(<Icon fontSize="small" style={{color: "#b4dab1", fontSize: "22px"}}>star</Icon>)
       }
 
       return (
-        <div className="cookbook-card">
+        <div className="playlist-card">
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-            <div className="recipe-title">{this.props.recipe.title}</div>
-              <div className="recipe-props" style={{display:"flex", justifyContent: "center", alignItems: "center"}}>
-                <Chip className="recipe-time" label={this.props.recipe.time + " minutes"} />
+            <div className="song-title">{this.props.song.title}</div>
+            <div className="song-artist">{this.props.song.artist}</div>
+              <div className="song-props" style={{display:"flex", justifyContent: "center", alignItems: "center"}}>
+                <Chip className="song-time" label={this.props.song.time + " min"} />
                 {items}
               </div>
-              <div className="recipe-img"><img src={this.props.recipe.img} alt={this.props.recipe.title}/></div>
-              <div className="recipe-props" style={{display:"flex", justifyContent: "center"}}>
-                <Chip className="recipe-time" label={this.props.recipe.level} />
-                <Chip className="recipe-time" label={this.props.recipe.meal} />
+              <div className="song-img"><img src={this.props.song.img} alt={this.props.song.title}/></div>
+              <div className="song-props" style={{display:"flex", justifyContent: "center"}}>
+                <Chip className="song-time" label={this.props.song.genre} />
+                <Chip className="song-time" label={this.props.song.mood} />
               </div>
               <div>
               {/* <div  style={{display: "flex", height:"40px", justifyContent: "center", marginBottom: "10px"}}>
@@ -83,8 +84,8 @@ export default class CookbookCard extends React.Component {
                 <Button style={{backgroundColor: "#b4dab1", borderColor: "#b4dab1", color: "black"}}>+</Button>
               </div> */}
               </div>
-            <div className="add-to-book" style={{paddingBottom: "8px"}}><Button variant="secondary" style={{backgroundColor: "#b4dab1", borderColor: "#b4dab1", color: "black"}}
-              onClick={this.removeFromCookbook}>Remove</Button></div>
+            <div className="add-to-playlist" style={{paddingBottom: "8px"}}><Button variant="secondary" style={{backgroundColor: "#b4dab1", borderColor: "#b4dab1", color: "black"}}
+              onClick={this.removeFromPlaylist}>Remove</Button></div>
         </div>
       );
     }

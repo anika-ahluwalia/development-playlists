@@ -59,7 +59,7 @@
   padding-left: 15px;
 }
 
-.recipe-card{
+.song-card{
   min-width: 220px;
   max-width: 220px;
   border-radius: 6px;
@@ -68,7 +68,7 @@
   background-color: white;
 }
 
-.cookbook-card{
+.playlist-card{
   min-width: 220px;
   border-radius: 6px;
   padding: 10px;
@@ -92,21 +92,26 @@
   padding: 8px;
 }
 
-.recipe-title{
+.song-title{
   text-align: center;
   font-weight: bold;
   font-size: 17px;
+}
+
+.song-artist{
+  text-align: center;
+  font-size: 12px;
   margin-bottom: 6px;
 }
 
-.recipe-props {
+.song-props {
   margin-bottom: 10px;
 }
-.recipe-time{
+.song-time{
   margin-right: 6px;
 }
 
-.add-to-book{
+.add-to-playlist{
   text-align: center;
 }
 
@@ -116,7 +121,7 @@ img{
   border-radius: 9px;
 }
 
-.recipe-img{
+.song-img{
   text-align: center;
   margin-bottom: 10px;
 }
@@ -125,7 +130,7 @@ img{
   min-width: 550px;
 }
 
-.cookbook{
+.playlist{
   border: 1px solid black;
   margin-left: 30px;
   background-color: white;
@@ -146,7 +151,7 @@ img{
     display: initial;
   }
 
-  .cookbook{
+  .playlist{
     margin-left: none;
   }
 }
