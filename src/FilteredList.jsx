@@ -1,13 +1,12 @@
 import './App.css';
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import DisplayList from './DisplayList';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 export default class FilteredList extends React.Component {
 
@@ -17,7 +16,8 @@ export default class FilteredList extends React.Component {
             genre: "All",
             mood: "All",
             sortingOrder: "Select",
-            sorting: "Time"
+            sorting: "Time",
+            search: "",
         }
     }
 
@@ -111,20 +111,37 @@ export default class FilteredList extends React.Component {
         }
     }
 
+    changeSearch = event => {
+        const search = event.target.value;
+        this.setState({ search });
+    }
+    
+
+    inSearch = item => {
+        if (item.title.toLowerCase().includes(this.state.search.toLowerCase())){
+            return true;
+        }
+    }
+
+
     render() {
         return (
         <div className="filtered-list">
             <div className="filters">
+                <div className="filter-section" style={{display: "flex", alignItems: "center"}}>
+                    <div className="section-title" >Search: </div>
+                    <TextField  className="song-title" value={this.state.search} onChange={this.changeSearch} inputProps={{ style: {fontSize: "16px", height: "20px", width: "260px"} }} id="outlined-basic" label="Search by Song Title" variant="outlined" />
+                </div>
                 <div className="filter-section" style={{display: "flex"}}>
                     <div className="section-title">Genre: </div>
                     <ButtonGroup disableElevation aria-label="outlined secondary button group">
-                        <Button style={{backgroundColor: this.state.genre == "All" ? "#b4dab1" : ""}} 
+                        <Button style={{backgroundColor: this.state.genre === "All" ? "#b4dab1" : ""}} 
                             onClick={() => this.onSelectFilterGenre("All")}>All</Button>
-                        <Button style={{backgroundColor: this.state.genre == "Indie" ? "#b4dab1" : ""}} 
+                        <Button style={{backgroundColor: this.state.genre === "Indie" ? "#b4dab1" : ""}} 
                             onClick={() => this.onSelectFilterGenre("Indie")}>Indie</Button>
-                        <Button style={{backgroundColor: this.state.genre == "Pop" ? "#b4dab1" : ""}} 
+                        <Button style={{backgroundColor: this.state.genre === "Pop" ? "#b4dab1" : ""}} 
                             onClick={() => this.onSelectFilterGenre("Pop")}>Pop</Button>
-                        <Button style={{backgroundColor: this.state.genre == "Hip Hop" ? "#b4dab1" : ""}} 
+                        <Button style={{backgroundColor: this.state.genre === "Hip Hop" ? "#b4dab1" : ""}} 
                             onClick={() => this.onSelectFilterGenre("Hip Hop")}>Hip Hop</Button>
                     </ButtonGroup>
                 </div>
@@ -132,13 +149,13 @@ export default class FilteredList extends React.Component {
                 <div className="filter-section" style={{display: "flex"}}>
                     <div className="section-title" >Mood: </div>
                     <ButtonGroup disableElevation aria-label="outlined secondary button group">
-                        <Button style={{backgroundColor: this.state.mood == "All" ? "#b4dab1" : ""}} 
+                        <Button style={{backgroundColor: this.state.mood === "All" ? "#b4dab1" : ""}} 
                             onClick={() => this.onSelectFilterMood("All")}>All</Button>
-                        <Button style={{backgroundColor: this.state.mood == "Happy" ? "#b4dab1" : ""}} 
+                        <Button style={{backgroundColor: this.state.mood === "Happy" ? "#b4dab1" : ""}} 
                             onClick={() => this.onSelectFilterMood("Happy")}>Happy</Button>
-                        <Button style={{backgroundColor: this.state.mood == "Sad" ? "#b4dab1" : ""}} 
+                        <Button style={{backgroundColor: this.state.mood === "Sad" ? "#b4dab1" : ""}} 
                             onClick={() => this.onSelectFilterMood("Sad")}>Sad</Button>
-                        <Button style={{backgroundColor: this.state.mood == "Energetic" ? "#b4dab1" : ""}} 
+                        <Button style={{backgroundColor: this.state.mood === "Energetic" ? "#b4dab1" : ""}} 
                             onClick={() => this.onSelectFilterMood("Energetic")}>Energetic</Button>
                     </ButtonGroup>
                 </div>
@@ -169,7 +186,7 @@ export default class FilteredList extends React.Component {
                 </div>
             </div>
             <DisplayList list={this.props.list.filter(item => this.matchesFilterMood(item) && 
-                this.matchesFilterGenre(item) ? true : false).sort((a, b) => this.state.sorting == "Time" ? this.sortTime(a,b) : this.sortRating(a,b))} 
+                this.matchesFilterGenre(item) ? true : false).sort((a, b) => this.state.sorting === "Time" ? this.sortTime(a,b) : this.sortRating(a,b)).filter(this.inSearch)} 
                 addToPlaylist={this.props.addToPlaylist}/>
         </div>
         );

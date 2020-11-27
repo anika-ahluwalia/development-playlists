@@ -13,6 +13,19 @@ export default class SongCard extends React.Component {
     addToPlaylist = () => {
       this.props.addToPlaylist(this.props.song);
     }
+
+    getTimeLabel = () => {
+      var time = this.props.song.time;
+      var min = 0;
+      while (time >= 60){
+        time += -60;
+        min += 1;
+      }
+      if (time < 10){
+        time = "0" + String(time);
+      }
+      return String(min) + ":" + String(time) + " min"
+    }
   
     render(){
 
@@ -30,7 +43,7 @@ export default class SongCard extends React.Component {
             <div className="song-title">{this.props.song.title}</div>
             <div className="song-artist">{this.props.song.artist}</div>
             <div className="song-props" style={{display:"flex", justifyContent: "center", alignItems: "center"}}>
-              <Chip className="song-time" label={this.props.song.time + " min"} />
+              <Chip className="song-time" label={this.getTimeLabel()} />
               {items}
             </div>
             <div className="song-img"><img src={this.props.song.img} alt={this.props.song.title}/></div>
