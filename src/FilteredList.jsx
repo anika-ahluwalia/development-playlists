@@ -28,7 +28,6 @@ export default class FilteredList extends React.Component {
     };
 
     matchesFilterGenre = (item) => {
-        // all items should be shown when no filter is selected
         if(this.state.genre === "All") { 
             return true
         } else if (this.state.genre === item.genre) {
@@ -45,7 +44,6 @@ export default class FilteredList extends React.Component {
     };
 
     matchesFilterMood = (item) => {
-        // all items should be shown when no filter is selected
         if(this.state.mood === "All") { 
             return true
         } else if (this.state.mood === item.mood) {
@@ -128,11 +126,14 @@ export default class FilteredList extends React.Component {
         return (
         <div className="filtered-list">
             <div className="filters">
-                <div className="filter-section" style={{display: "flex", alignItems: "center"}}>
+                <div className="filter-section">
                     <div className="section-title" >Search: </div>
-                    <TextField  className="song-title" value={this.state.search} onChange={this.changeSearch} inputProps={{ style: {fontSize: "16px", height: "20px", width: "260px"} }} id="outlined-basic" label="Search by Song Title" variant="outlined" />
+                    <TextField  className="song-title" value={this.state.search} 
+                        onChange={this.changeSearch} 
+                        inputProps={{ style: {fontSize: "16px", height: "20px", width: "260px"} }} 
+                        id="outlined-basic" label="Search by Song Title" variant="outlined" />
                 </div>
-                <div className="filter-section" style={{display: "flex"}}>
+                <div className="filter-section">
                     <div className="section-title">Genre: </div>
                     <ButtonGroup disableElevation aria-label="outlined secondary button group">
                         <Button style={{backgroundColor: this.state.genre === "All" ? "#b4dab1" : ""}} 
@@ -160,7 +161,7 @@ export default class FilteredList extends React.Component {
                     </ButtonGroup>
                 </div>
 
-                <div className="filter-section" style={{display: "flex"}}>
+                <div className="filter-section">
                     <div className="section-title">Sort by: </div>
                     <div className="section-title">
                         <FormControl>
@@ -185,8 +186,10 @@ export default class FilteredList extends React.Component {
                     </div>
                 </div>
             </div>
-            <DisplayList list={this.props.list.filter(item => this.matchesFilterMood(item) && 
-                this.matchesFilterGenre(item) ? true : false).sort((a, b) => this.state.sorting === "Time" ? this.sortTime(a,b) : this.sortRating(a,b)).filter(this.inSearch)} 
+            <DisplayList 
+                list={this.props.list.filter(item => this.matchesFilterMood(item) && 
+                    this.matchesFilterGenre(item) ? true : false).sort((a, b) => 
+                    this.state.sorting === "Time" ? this.sortTime(a,b) : this.sortRating(a,b)).filter(this.inSearch)} 
                 addToPlaylist={this.props.addToPlaylist}/>
         </div>
         );

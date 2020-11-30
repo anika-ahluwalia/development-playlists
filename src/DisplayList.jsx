@@ -4,10 +4,6 @@ import SongCard from './SongCard';
 import Row from 'react-bootstrap/Row'
 
 export default class DisplayList extends React.Component {
-
-  constructor(props){
-    super(props);
-  }
   
   render(){
     return (

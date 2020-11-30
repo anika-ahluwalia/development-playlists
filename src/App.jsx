@@ -9,8 +9,12 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
      
+    // setting variables that will change in the state
     this.state = {
+      // initializing the playlist as an empty list that will be added to
       playlist: [],
+
+      // initialzing a list of songs and their respective attributes (artist, rating, time, album image, genre, and mood)
       songsList: [
         { title: "Green Light", artist: "Lorde", rating: 5, time: 234, 
           img: "https://images.genius.com/135e9ae4d19e7816e0ffdd9a95922a0c.1000x1000x1.jpg",
@@ -61,7 +65,7 @@ export default class App extends React.Component {
           img: "https://upload.wikimedia.org/wikipedia/en/2/2f/Iloveyou_the_neighbourhood.jpeg",
           genre: "Indie", mood: "Sad"},
         { title: "Sunflower, Vol. 6", artist: "Harry Styles", rating: 4, time: 194, 
-          img: "https://static.wikia.nocookie.net/harry-styles8955/images/a/af/Fine_Line_Cover_Art.jpeg/revision/latest/scale-to-width-down/340?cb=20191104185139",
+          img: "/assets/sunflower.jpg",
           genre: "Pop", mood: "Happy"},
         { title: "BOY BYE", artist: "BROCKHAMPTON", rating: 4, time: 142, 
           img: "https://thefader-res.cloudinary.com/private_images/w_760,c_limit,f_auto,q_auto:best/brkcohamp_gigner_ovdlb9/brockhampton-new-song-boy-bye-detail-ginger-2019.jpg",
@@ -104,33 +108,46 @@ export default class App extends React.Component {
           genre: "Hip Hop", mood: "Sad"},
       ]
     };
-    this.totalTime = 0;
   }
 
+  // this function adds a song (from parameters) to the playlist
   addToPlaylist = (song) => {
+    // gets the playlist as it is
     var playlist = this.state.playlist;
+
+    // adds the song if its not already in the playlist
     if (!playlist.includes(song)){
       playlist.push(song);
     }
+    // updates the playlist in state
     this.setState({ playlist });
   }
 
+  // this function removes a song (from parameters) from the playlist
   removeFromPlaylist = (song) => {
+    // gets the playlist and finds the index of the song
     var playlist = this.state.playlist;
     const index = playlist.indexOf(song);
-    playlist.splice(index, index + 1);
+    // removes the song from the playlist and updates the state
+    playlist.splice(index, 1);
     this.setState({ playlist });
   }
 
-
+  // what will be rendered in the overall app
   render(){
     return (
       <div className="App">
+        {/* title component */}
         <div className="overall-title">Create a Playlist!</div>
+        {/* overall app below */}
         <div className="app-container">
+          {/* left side of the app just has the list and its filters (pass in the list and the function 
+            to add a song to the playlist) */}
           <div className="left-side">
             <FilteredList list={this.state.songsList} addToPlaylist={this.addToPlaylist} />
           </div>
+          {/* right side of the app has the aggregator(pass in the overall playlist to render and the function
+            to remove a song from the playlist) */}
           <div className="right-side">
             <Playlist list={this.state.playlist} removeFromPlaylist={this.removeFromPlaylist}/>
           </div>

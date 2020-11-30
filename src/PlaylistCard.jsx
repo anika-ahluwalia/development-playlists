@@ -5,10 +5,6 @@ import Icon from '@material-ui/core/Icon';
 import Chip from '@material-ui/core/Chip';
 
 export default class PlaylistCard extends React.Component {
-
-    constructor(props){
-      super(props);
-    }
     
     removeFromPlaylist = () => {
       this.props.removeFromPlaylist(this.props.song);
@@ -34,46 +30,31 @@ export default class PlaylistCard extends React.Component {
 
       while (index < this.props.song.rating) {
         index += 1;
-        items.push(<Icon fontSize="small" style={{color: "#b4dab1", fontSize: "22px"}}>star</Icon>)
+        items.push(<Icon className="rating-star">star</Icon>)
       }
 
       return (
-        // <div className="playlist-card">
-        //   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        //     <div className="song-title">{this.props.song.title}</div>
-        //     <div className="song-artist">{this.props.song.artist}</div>
-        //       <div className="song-props" style={{display:"flex", justifyContent: "center", alignItems: "center"}}>
-        //         <Chip className="song-time" label={this.getTimeLabel()} />
-        //         {items}
-        //       </div>
-        //       <div className="song-img"><img src={this.props.song.img} alt={this.props.song.title}/></div>
-        //       <div className="song-props" style={{display:"flex", justifyContent: "center"}}>
-        //         <Chip className="song-time" label={this.props.song.genre} />
-        //         <Chip className="song-time" label={this.props.song.mood} />
-        //       </div>
-        //       <div>
-        //       </div>
-        //     <div className="add-to-playlist" style={{paddingBottom: "8px"}}><Button variant="secondary" style={{backgroundColor: "#b4dab1", borderColor: "#b4dab1", color: "black"}}
-        //       onClick={this.removeFromPlaylist}>Remove</Button></div>
-        // </div>
-        <div className="playlist-card" style={{display:"flex", alignItems: "center"}}>
+        <div className="playlist-card">
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-          <div className="song-img" style={{margin: "10px"}} ><img style={{width: "140px", height: "140px"}} src={this.props.song.img} alt={this.props.song.title}/></div>
+          <div className="song-img">
+            <img className="playlist-album" src={this.props.song.img} alt={this.props.song.title}/>
+          </div>
           <div className="song-info">
-            <div style={{alignItems: "center", marginBottom: "12px", marginLeft: "10px"}}> 
-              <div className="song-title" style={{marginRight: "10px", textAlign: "left"}}>{this.props.song.title}</div>
-              <div className="song-artist" style={{alignItems: "center", marginBottom: "none", textAlign: "left"}}>{this.props.song.artist}</div>
+            <div className="song-id-container"> 
+              <div className="song-title-playlist">{this.props.song.title}</div>
+              <div className="song-artist-playlist">{this.props.song.artist}</div>
             </div>
-            <div className="song-props" style={{display:"flex", justifyContent: "center", alignItems: "center"}}>
+            <div className="song-props">
                 <Chip className="song-time" label={this.getTimeLabel()} />
                 {items}
               </div>
-              <div className="song-props" style={{display:"flex", justifyContent: "center"}}>
+              <div className="song-props">
                 <Chip className="song-time" label={this.props.song.genre} />
                 <Chip className="song-time" label={this.props.song.mood} />
               </div>
           </div>
-            <div className="add-to-playlist" style={{marginLeft: "15px", marginRight: "7px"}}><Button variant="secondary" style={{backgroundColor: "#ee8d8d", borderColor: "#ee8d8d", color: "black"}}
+            <div className="remove-from-playlist">
+              <Button variant="secondary" style={{backgroundColor: "#ee8d8d", borderColor: "#ee8d8d", color: "black"}}
               onClick={this.removeFromPlaylist}>×</Button></div>
         </div>
       );

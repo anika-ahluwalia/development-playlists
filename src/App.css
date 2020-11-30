@@ -3,8 +3,6 @@
   padding-left: 30px;
   padding-right: 30px;
   min-height: 54vw;
-  /* background-color: #b4dab1; */
-
   background-color: #353535;
 }
 
@@ -21,7 +19,7 @@
 }
 
 .filters{
-  min-width: 700px;
+  min-width: 750px;
 }
 
 .filter{
@@ -47,6 +45,8 @@
   padding: 10px;
   margin: 15px;
   background-color: rgb(234, 248, 233);
+  display: flex;
+  align-items: center;
 }
 
 .section-title{
@@ -63,6 +63,8 @@
 
 .filter-section{
   padding: 8px;
+  display: flex;
+  align-items: center;
 }
 
 .song-title{
@@ -71,14 +73,39 @@
   font-size: 17px;
 }
 
+.song-title-playlist{
+  font-weight: bold;
+  font-size: 17px;
+  margin-right: 10px;
+  text-align: left;
+}
+
 .song-artist{
   text-align: center;
   font-size: 12px;
   margin-bottom: 6px;
 }
 
+.song-artist-playlist{
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 6px;
+  align-items: center;
+  margin-bottom: none;
+  text-align: left;
+}
+
+.song-id-container{
+  align-items: center;
+  margin-bottom: 12px;
+  margin-left: 10px;
+}
+
 .song-props {
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .song-time{
   margin-right: 6px;
@@ -86,6 +113,22 @@
 
 .add-to-playlist{
   text-align: center;
+  padding-bottom: 8px;
+}
+
+.remove-from-playlist{
+  margin-left: 15px;
+  margin-right: 7px;
+  text-align: center;
+}
+
+.rating-star{
+  color: #b4dab1;
+  font-size: 22px;
+}
+
+.total-time{
+  margin-top: 25px;
 }
 
 img{
@@ -94,9 +137,14 @@ img{
   border-radius: 9px;
 }
 
+.playlist-album{
+  width: 140px;
+  height: 140px;
+}
+
 .song-img{
   text-align: center;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 .right-side{

@@ -6,10 +6,6 @@ import TextField from '@material-ui/core/TextField';
 
 export default class Playlist extends React.Component {
 
-  constructor(props){
-    super(props);
-  }
-
   getTotalTime = () => {
     var index = 0;
     var time = 0;
@@ -45,10 +41,13 @@ export default class Playlist extends React.Component {
     return (
         <div className="playlist">
             <div className="song-title">
-            <TextField  className="song-title" inputProps={{ style: {fontSize: "25px"} }} id="outlined-basic" label="Playlist Title" variant="outlined" />
+            <TextField  className="song-title" inputProps={{ style: {fontSize: "25px"} }} 
+              id="outlined-basic" label="Playlist Title" variant="outlined" />
             </div>
-            <Row style={{justifyContent:"center"}}>{this.props.list.map(item => <PlaylistCard song={item} removeFromPlaylist={this.props.removeFromPlaylist}/>)}</Row>
-            <div className="total-time" style={{marginTop: "10px"}}>Total Time: {this.getTimeLabel()}</div>
+            <Row style={{justifyContent:"center"}}>
+              {this.props.list.map(item => <PlaylistCard song={item} removeFromPlaylist={this.props.removeFromPlaylist}/>)}
+            </Row>
+            <div className="total-time">Total Time: {this.getTimeLabel()}</div>
         </div>
     );
   }
