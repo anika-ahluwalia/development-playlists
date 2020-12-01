@@ -20,11 +20,11 @@ Ultimately, the overall structures is as follows:
 >                                 /   \
 > playlist, removeFromPlaylist() /     \ songList, playlist, addToPlaylist()
 >                               /       \
->                        Playlist.jsx    FilteredList.jsx
+>                      Playlist.jsx    FilteredList.jsx
 >                             /           \
 > song, removeFromPlaylist() /             \ filteredList, addToPlaylist()
 >                           /               \
->                  PlaylistCard.jsx     DisplayList.jsx
+>                 PlaylistCard.jsx     DisplayList.jsx
 >                                             \
 >                                              \ song, addToPlaylist()
 >                                               \
