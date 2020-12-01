@@ -6,21 +6,17 @@
   background-color: #353535;
 }
 
-.overall-title{
-  text-align: center;
-  font-size: 55px;
-  font-weight: bolder;
-  color: rgb(126, 212, 126);
-}
-
 .app-container{
   display: flex;
   padding: 30px;
 }
-
-.filters{
-  min-width: 750px;
+.overall-title{
+  text-align: center;
+  font-size: 55px;
+  font-weight: bolder;
+  color: rgb(103, 223, 103);
 }
+
 
 .filter{
   padding: 10px;
@@ -30,23 +26,28 @@
   padding-left: 15px;
 }
 
-.song-card{
-  min-width: 220px;
-  max-width: 220px;
+.filters {
+  border: 1px solid black;
   border-radius: 6px;
-  padding: 10px;
-  margin: 15px;
+  padding: 20px;
   background-color: white;
+  min-width: 750px;
 }
 
-.playlist-card{
-  min-width: 220px;
+.full-filters {
+  border: 1px solid black;
   border-radius: 6px;
-  padding: 10px;
-  margin: 15px;
-  background-color: rgb(234, 248, 233);
+  padding: 20px;
+  background-color: white;
+  min-width: 90vw;
+  display: flex;
+}
+
+.filter-section{
+  padding: 8px;
   display: flex;
   align-items: center;
+  min-width: 250px;
 }
 
 .section-title{
@@ -54,23 +55,29 @@
   margin-right: 10px;
 }
 
-.filters {
-  border: 1px solid black;
+.song-card{
+  min-width: 220px;
+  max-width: 220px;
   border-radius: 6px;
-  padding: 20px;
-  background-color: white;
-}
-
-.filter-section{
-  padding: 8px;
-  display: flex;
-  align-items: center;
+  padding: 10px;
+  margin: 15px;
+  background-color: rgb(232, 255, 230);
 }
 
 .song-title{
   text-align: center;
   font-weight: bold;
   font-size: 17px;
+}
+
+.playlist-card{
+  min-width: 220px;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 15px;
+  background-color: rgb(224, 255, 223);
+  display: flex;
+  align-items: center;
 }
 
 .song-title-playlist{
@@ -84,6 +91,11 @@
   text-align: center;
   font-size: 12px;
   margin-bottom: 6px;
+}
+
+.song-img{
+  text-align: center;
+  margin: 10px;
 }
 
 .song-artist-playlist{
@@ -123,12 +135,8 @@
 }
 
 .rating-star{
-  color: #b4dab1;
+  color: #5cd654;
   font-size: 22px;
-}
-
-.total-time{
-  margin-top: 25px;
 }
 
 img{
@@ -140,11 +148,6 @@ img{
 .playlist-album{
   width: 140px;
   height: 140px;
-}
-
-.song-img{
-  text-align: center;
-  margin: 10px;
 }
 
 .right-side{
@@ -161,10 +164,10 @@ img{
 }
 
 .total-time{
-  font-size: 18px;
+  margin-top: 10px;
+  font-size: 16px;
   text-align: center;
   padding-top: 6px;
-  border-top: 0.5px solid rgb(104, 129, 104);
 }
 
 @media screen and (max-width: 1300px) {

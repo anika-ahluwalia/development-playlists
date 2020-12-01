@@ -65,7 +65,7 @@ export default class App extends React.Component {
           img: "https://upload.wikimedia.org/wikipedia/en/2/2f/Iloveyou_the_neighbourhood.jpeg",
           genre: "Indie", mood: "Sad"},
         { title: "Sunflower, Vol. 6", artist: "Harry Styles", rating: 4, time: 194, 
-          img: "/assets/sunflower.jpg",
+          img: "https://images-na.ssl-images-amazon.com/images/I/61uo57hXGxL._SL1200_.jpg",
           genre: "Pop", mood: "Happy"},
         { title: "BOY BYE", artist: "BROCKHAMPTON", rating: 4, time: 142, 
           img: "https://thefader-res.cloudinary.com/private_images/w_760,c_limit,f_auto,q_auto:best/brkcohamp_gigner_ovdlb9/brockhampton-new-song-boy-bye-detail-ginger-2019.jpg",
@@ -77,7 +77,7 @@ export default class App extends React.Component {
           img: "https://i.pinimg.com/736x/1a/94/3b/1a943b84847b0dff1735c309962b625a.jpg",
           genre: "Hip Hop", mood: "Happy"},
         { title: "Va Va Voom", artist: "Nicki Minaj", rating: 4, time: 183, 
-          img: "https://static.wikia.nocookie.net/nickiminaj/images/1/11/Nicki_Minaj_-_Pink_Friday_Roman_Reloaded_%28Deluxe_Edition%29_-2012-.png/revision/latest?cb=20160807014104",
+          img: "https://images-na.ssl-images-amazon.com/images/I/81G0s5Uv1ZL._SY355_.jpg",
           genre: "Pop", mood: "Energetic"},
         { title: "Lucid Dreams", artist: "Juice WRLD", rating: 1, time: 240, 
           img: "https://e-cdns-images.dzcdn.net/images/cover/f8c4db1b0f346d6e4b1558f734ad4523/500x500.jpg",
@@ -144,12 +144,12 @@ export default class App extends React.Component {
           {/* left side of the app just has the list and its filters (pass in the list and the function 
             to add a song to the playlist) */}
           <div className="left-side">
-            <FilteredList list={this.state.songsList} addToPlaylist={this.addToPlaylist} />
+            <FilteredList list={this.state.songsList} playlist={this.state.playlist} addToPlaylist={this.addToPlaylist} />
           </div>
           {/* right side of the app has the aggregator(pass in the overall playlist to render and the function
             to remove a song from the playlist) */}
           <div className="right-side">
-            <Playlist list={this.state.playlist} removeFromPlaylist={this.removeFromPlaylist}/>
+            {this.state.playlist.length > 0 ? <Playlist list={this.state.playlist} removeFromPlaylist={this.removeFromPlaylist}/> : null}
           </div>
         </div>
       </div>
