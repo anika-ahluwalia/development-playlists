@@ -16,16 +16,16 @@ The other state changes happen when a song is added to or removed from the playl
 
 Ultimately, the overall structures is as follows:
 
-                                App.jsx
-                                 /   \
- playlist, removeFromPlaylist() /     \ songList, playlist, addToPlaylist()
-                               /       \
-                        Playlist.jsx    FilteredList.jsx
-                             /           \
- song, removeFromPlaylist() /             \ filteredList, addToPlaylist()
-                           /               \
-                  PlaylistCard.jsx     DisplayList.jsx
-                                             \
-                                              \ song, addToPlaylist()
-                                               \
-                                           SongCard.jsx  
+>                                App.jsx
+>                                 /   \
+> playlist, removeFromPlaylist() /     \ songList, playlist, addToPlaylist()
+>                               /       \
+>                        Playlist.jsx    FilteredList.jsx
+>                             /           \
+> song, removeFromPlaylist() /             \ filteredList, addToPlaylist()
+>                           /               \
+>                  PlaylistCard.jsx     DisplayList.jsx
+>                                             \
+>                                              \ song, addToPlaylist()
+>                                               \
+>                                           SongCard.jsx  
